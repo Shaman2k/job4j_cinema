@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}"></head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container mt-4 mb-4">
+    <div class="card shadow-sm" th:object="${film}">
+        <div class="card-body">
+            <h2 class="mb-4" th:text="*{name}"></h2>
+            <div class="row">
+                <!-- Картинка слева -->
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <img th:src="@{/files/{fileId}(fileId=*{fileId})}"
+                         class="img-fluid rounded"
+                         alt="No image">
+                </div>
+                <div class="col-md-8">
+                    <div class="row mb-2">
+                        <div class="col-4 col-sm-3 text-muted">Год:</div>
+                        <div class="col-8 col-sm-9" th:text="*{year}"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4 col-sm-3 text-muted">Жанр:</div>
+                        <div class="col-8 col-sm-9" th:text="*{genre}"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4 col-sm-3 text-muted">Возраст:</div>
+                        <div class="col-8 col-sm-9" th:text="*{minimalAge} + '+'"></div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4 col-sm-3 text-muted">Длительность:</div>
+                        <div class="col-8 col-sm-9" th:text="*{durationInMinutes} + ' мин'"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 col-sm-3 text-muted">Описание:</div>
+                        <div class="col-8 col-sm-9 text-break" style="white-space: pre-line;" th:text="*{description}"></div>
+                    </div>
+                    <a href="/films" class="btn btn-primary mt-2">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

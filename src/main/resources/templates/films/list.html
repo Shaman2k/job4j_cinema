@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}"></head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container mt-4 mb-4 flex-grow-1">
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="film: ${films}">
+            <a th:href="@{/films/{id}(id=${film.id})}" class="text-decoration-none text-dark">
+                <div class="card h-100 shadow-sm p-3">
+                    <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center">
+                        <img th:src="@{/files/{fileId}(fileId=${film.fileId})}"
+                             class="img-fluid object-fit-cover"
+                             alt="No image">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3" th:text="${film.name}"></h5>
+                        <div class="row g-0 mb-2">
+                            <div class="col-4 text-muted">Жанр:</div>
+                            <div class="col-8" th:text="${film.genre}"></div>
+                        </div>
+                        <div class="row g-0 mb-2">
+                            <div class="col-4 text-muted">Возраст:</div>
+                            <div class="col-8" th:text="${film.minimalAge} + '+'"></div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

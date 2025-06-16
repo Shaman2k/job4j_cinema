@@ -1,6 +1,6 @@
 INSERT INTO files (name, path) VALUES
-                                   ('Аватар', '/posters/avatar.jpg'),
-                                   ('Интерстеллар', '/posters/interstellar.jpg'),
-                                   ('Матрица', '/posters/matrix.jpg'),
-                                   ('Крестный отец', '/posters/godfather.jpg'),
-                                   ('Побег из Шоушенка', '/posters/shawshank.jpg');
+                                   ('Аватар', 'files/avatar.jpg'),
+                                   ('Интерстеллар', 'files/interstellar.jpg'),
+                                   ('Матрица', 'files/matrix.jpg'),
+                                   ('Крестный отец', 'files/godfather.jpg'),
+                                   ('Побег из Шоушенка', 'files/shawshank.jpg');
