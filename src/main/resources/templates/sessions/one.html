@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}"></head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container mt-4 mb-4">
+    <div class="card shadow-sm">
+        <form method="post" th:action="@{/tickets/buy}" th:object="${filmSession}" class="mb-0">
+            <input type="hidden" name="sessionId" th:value="*{id}">
+            <div class="card-body">
+                <h2 class="mb-4 text-center" th:text="*{filmName}"></h2>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <img th:src="@{/files/{fileId}(fileId=*{fileId})}"
+                             class="img-fluid rounded"
+                             alt="No image">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row mb-2">
+                            <div class="col-4 col-sm-3 text-muted">Начало:</div>
+                            <div class="col-8 col-sm-9"
+                                 th:text="*{#temporals.format(startTime, 'dd.MM.yyyy HH:mm')}"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4 col-sm-3 text-muted">Окончание:</div>
+                            <div class="col-8 col-sm-9"
+                                 th:text="*{#temporals.format(endTime, 'dd.MM.yyyy HH:mm')}"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4 col-sm-3 text-muted">Длительность:</div>
+                            <div class="col-8 col-sm-9" th:text="*{duration} + ' мин'"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-4 col-sm-3 text-muted" th:text="*{hallName}"></div>
+                            <div class="col-8 col-sm-9 text-break" style="white-space: pre-line;"
+                                 th:text="*{hallDescription}"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4 col-sm-3 text-muted">Ряд:</div>
+                            <div class="col-8 col-sm-9">
+                                <select class="form-control" id="rowNumber" name="rowNumber">
+                                    <option th:each="i : *{#numbers.sequence(1, rowCount)}" th:value="${i}"
+                                            th:text="${i}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4 col-sm-3 text-muted">Место:</div>
+                            <div class="col-8 col-sm-9">
+                                <select class="form-control" id="placeNumber" name="placeNumber">
+                                    <option th:each="i : *{#numbers.sequence(1, placeCount)}" th:value="${i}"
+                                            th:text="${i}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2" style="font-size: 1.5rem !important;">
+                            <div class="col-4 col-sm-3 text-muted">Цена:</div>
+                            <div class="col-8 col-sm-9" th:text="*{price} + ' руб.'"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4 col-sm-3">
+                                <a href="/sessions" class="btn btn-secondary btn-lg">Назад</a>
+                            </div>
+                            <div class="col-8 col-sm-9">
+
+                                <button type="submit" class="btn btn-success btn-lg">Оплатить</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

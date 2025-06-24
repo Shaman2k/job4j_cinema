@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}"></head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container mt-4 mb-4 flex-grow-1">
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="filmSession: ${filmSessions}">
+            <a th:href="@{/sessions/{id}(id=${filmSession.id})}" class="text-decoration-none text-dark">
+                <div class="card h-100 shadow-sm p-3">
+                    <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center">
+                        <img th:src="@{/files/{fileId}(fileId=${filmSession.fileId})}"
+                             class="img-fluid object-fit-cover"
+                             style="height: 140px; width: auto;"
+                             alt="No image">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3" th:text="${filmSession.filmName}"></h5>
+                        <div class="row g-0 mb-2">
+                            <div class="col-4 text-muted">Дата:</div>
+                            <div class="col-8" th:text="${#temporals.format(filmSession.startTime, 'dd.MM.yyyy HH:mm')}"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                            <span th:text="${filmSession.hallName}"></span>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                            <span th:text="${filmSession.duration} + 'мин'"></span>
+
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <span th:text="${filmSession.price} + 'р.'"></span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
