@@ -29,7 +29,7 @@ public class Sql2oFilmRepository implements FilmRepository {
             var query = connection.createQuery("SELECT * FROM films WHERE id = :id");
             query.addParameter("id", id);
             var film = query.setColumnMappings(Film.COLUMN_MAPPING).executeAndFetchFirst(Film.class);
-            return Optional.of(film);
+            return Optional.ofNullable(film);
         }
     }
 }

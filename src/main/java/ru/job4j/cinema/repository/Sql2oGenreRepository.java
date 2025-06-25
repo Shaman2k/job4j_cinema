@@ -19,7 +19,7 @@ public class Sql2oGenreRepository implements GenreRepository {
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("SELECT * FROM genres WHERE id = :id")
                     .addParameter("id", id);
-            return Optional.of(query.executeAndFetchFirst(Genre.class));
+            return Optional.ofNullable(query.executeAndFetchFirst(Genre.class));
         }
     }
 }

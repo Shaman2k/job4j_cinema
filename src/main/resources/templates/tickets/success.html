@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}"></head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container mt-4 mb-4">
+    <div class="card shadow-sm">
+        <div class="card-body" th:object="${ticket}">
+            <h2 class="mb-4 text-center">Вы успешно купили билет</h2>
+            <div class="row mb-2">
+                <div class="col-4 col-sm-3 text-muted">Ряд:</div>
+                <div class="col-8 col-sm-9" th:text="*{rowNumber}"></div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-4 col-sm-3 text-muted">Место:</div>
+                <div class="col-8 col-sm-9" th:text="*{placeNumber}"></div>
+            </div>
+            <a href="/sessions" class="btn btn-primary">Сеансы</a>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

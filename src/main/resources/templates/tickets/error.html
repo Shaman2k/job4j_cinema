@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/header :: header}"></head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container mt-4 mb-4">
+    <div class="card shadow-sm">
+        <div class="card-body" th:object="${ticket}">
+            <h2 class="mb-4 text-center">Не удалось приобрести билет на заданное место.</h2>
+            <div class="row mb-2">Вероятно оно уже занято. Перейдите на страницу бронирования билетов и попробуйте
+                снова.
+            </div>
+            <button class="btn btn-primary" type="button" onclick="javascript:history.back()">Back</button>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
+

@@ -19,7 +19,7 @@ public class Sql2oHallRepository implements HallRepository {
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("SELECT * FROM halls WHERE id = :id")
                     .addParameter("id", id);
-            return Optional.of(query.setColumnMappings(Hall.COLUMN_MAPPING).executeAndFetchFirst(Hall.class));
+            return Optional.ofNullable(query.setColumnMappings(Hall.COLUMN_MAPPING).executeAndFetchFirst(Hall.class));
         }
     }
 }

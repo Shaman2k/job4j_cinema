@@ -1,8 +1,8 @@
 <!DOCTYPE html>Add commentMore actions
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/header :: header"></head>
+<head th:insert="~{fragments/header :: header}"></head>
 <body>
-<div th:replace="fragments/navigation :: navigation"></div>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
 <div class="container">
     <div class="row">
         <div class="col-3"></div>
@@ -41,6 +41,6 @@
         <div class="col-3"></div>
     </div>
 </div>
-<footer th:include="fragments/footer :: footer"></footer>
+<footer th:insert="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
