@@ -32,7 +32,11 @@ public class SimpleFilmService implements FilmService {
 
     @Override
     public Optional<FilmDto> findById(int id) {
-        return Optional.of(getFilmDto(filmRepository.findById(id).get()));
+        Optional<Film> optionalFilm = filmRepository.findById(id);
+        if (optionalFilm.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(getFilmDto(optionalFilm.get()));
     }
 
     private FilmDto getFilmDto(Film film) {

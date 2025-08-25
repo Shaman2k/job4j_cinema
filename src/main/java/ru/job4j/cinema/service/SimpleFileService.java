@@ -2,7 +2,6 @@ package ru.job4j.cinema.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FileDto;
-import ru.job4j.cinema.model.File;
 import ru.job4j.cinema.repository.FileRepository;
 
 import java.io.IOException;
@@ -19,11 +18,6 @@ public class SimpleFileService implements FileService {
     }
 
     @Override
-    public File save(FileDto fileDto) {
-        return null;
-    }
-
-    @Override
     public Optional<FileDto> getFileById(int id) {
         var fileOptional = fileRepository.findById(id);
         if (fileOptional.isEmpty()) {
@@ -36,23 +30,6 @@ public class SimpleFileService implements FileService {
     private byte[] readFileAsBytes(String path) {
         try {
             return Files.readAllBytes(Path.of(path));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void deleteById(int id) {
-        var fileOptional = fileRepository.findById(id);
-        if (fileOptional.isPresent()) {
-            deleteFile(fileOptional.get().getPath());
-            fileRepository.deleteById(id);
-        }
-    }
-
-    private void deleteFile(String path) {
-        try {
-            Files.deleteIfExists(Path.of(path));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
